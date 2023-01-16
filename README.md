@@ -5,7 +5,7 @@ Since it's important to continue to practice my coding skills and challenge myse
 
 ## Table of Contents 
 
-- [Roman to Integer](#Roman to Integer)
+- [Roman to Integer](#roman_to_integer)
 
-## Roman to Integer
+## Roman_to_Integer
 This algorithm converts roman numerals to integers. The original problem and description can be found here: [13. Roman to Integer](https://leetcode.com/problems/roman-to-integer/)
