@@ -9,6 +9,18 @@ var romanToInt = function(s) {
 
     // loop through the array
     // check if index and idex + 1 .joined = one of the letter combos, then add to number
+    for (let i = 0; i < charArray.length; i++) {
+
+        if (i === charArray.length - 1) {
+            console.log('The End')
+            return;
+        }
+
+        let joinedChars = [charArray[i], charArray[i + 1]].join('');
+
+        console.log(joinedChars);
+
+    }
 
     
 
@@ -17,4 +29,6 @@ var romanToInt = function(s) {
     return number;
 };
 
-console.log(romanToInt(0));
+// console.log(romanToInt(0));
+
+romanToInt('MCMXCIV')
