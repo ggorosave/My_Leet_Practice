@@ -2,29 +2,32 @@
  * @param {string} s
  * @return {number}
  */
-var romanToInt = function(s) {
+var romanToInt = function (s) {
     let number = 0;
 
     charArray = Array.from(s);
 
     // loop through the array
     // check if index and idex + 1 .joined = one of the letter combos, then add to number
-    for (let i = 0; i < charArray.length; i++) {
+   
+    do {
+        let joinedChars = [charArray[0], charArray[1]].join('');
 
-        if (i === charArray.length - 1) {
-            console.log('The End')
-            return;
+        if (/IV/i.test(joinedChars) || /IX/i.test(joinedChars) || /XL/i.test(joinedChars) || /XC/i.test(joinedChars) || /CD/i.test(joinedChars) || /CM/i.test(joinedChars)) {
+            console.log('Match: ' + joinedChars);
+           
+            charArray.shift();
+            charArray.shift();
+            
+        } else {
+
+            console.log('No match: ' + charArray[0]);
+
+            charArray.shift();      
+
         }
 
-        let joinedChars = [charArray[i], charArray[i + 1]].join('');
-
-        console.log(joinedChars);
-
-    }
-
-    
-
-    
+    } while (charArray.length > 0)
 
     return number;
 };
