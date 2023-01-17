@@ -5,12 +5,13 @@
 var romanToInt = function (s) {
     let number = 0;
 
+    // creates an array from the given string
     charArray = Array.from(s);
 
     // loop through the array
     // check if index and idex + 1 .joined = one of the letter combos, then add to number
 
-    // Runs the code in the do section once, then checks the condition again
+    // Runs the code in the do section once, then checks the condition again. As the do while cycles through each time, it should remove the first item or first two items of the array.
     do {
         // joins the first two characters of the array in a new variable
         let joinedChars = [charArray[0], charArray[1]].join('');
@@ -80,6 +81,7 @@ var romanToInt = function (s) {
                     number += 0;
             }
 
+            // removes only the first character of the array
             charArray.shift();
         }
 
@@ -90,4 +92,6 @@ var romanToInt = function (s) {
 
 
 // romanToInt('MCMXCIV')
+console.log(romanToInt('III'));
+console.log(romanToInt('LVIII'));
 console.log(romanToInt('MCMXCIV'));
