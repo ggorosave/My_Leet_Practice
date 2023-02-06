@@ -37,88 +37,50 @@ function quickSort(array) {
 
     // Calls medianOfThree to return the pivot
     // const pIndex = medianOfThree(array);
-    // DELETE
-    // console.log('pivot: ' + pivot);
-
-    // ---DELETE BELOW---
-
-    // const sortPartition = (array, left, right) {
-    //     const pivot = array[right];
-    //     let i = left - 1;
-
-    //     for(let j = left; j < right - 1; j++) {
-
-    //         if (array[j] > pivot) {
-    //             i++
-    //             [array[j], array[i]] = [array[i], array[j]];
-    //         }
-    //     }
-
-    //     [array[i + 1], pivot] = [pivot, array[i + 1]];
-    //     return i + 1;
-    // }
-
-    // // sorts the left
-    // for (let j = 0; j < pIndex - 1; j++) {
-    //     let i = j - 1;
-    //     if (array[j] < array[pIndex]) {
-    //         [array[j], array[i]] = [array[i], array[j]];
-    //     }
-    // }
-
-    // ---Attempt 02/06/2023---
-    let left = 0;
-    let right = array.length;
-    let pivot = array[right];
-    
-    // creates two sub arrays
-    const lessThanArray = array.map(num => num < pivot);
-    const greaterThanArray = array.map(num => num > pivot);
-
-    // recursively calls quicksort on lessThan and greaterThan arrays
-    const lessThanSortedArray = quickSort(lessThanArray);
-    const greaterThanSortedArray = quickSort(greaterThanArray);
-
-    return array = [...lessThanSortedArray, pivot, ...greaterThanSortedArray];
-    
-
-    // loops through each element of the array
-    for (let j = 0; j < array.length; j++) {
-
-        if (array[j] > pivot) {
-            i++
-            [array[j], array[i]] = [array[i], array[j]];
-        }
-
-        [array[i + 1], pivot] = [pivot, array[i + 1]];
-
-        if (j === array.length) {
-
-        }
-    }
-    
+     
     // ---NEW---
     /*
     1. Choose pivot
     2. make two sub arrays, numbers greater than pivot go in one array, and numbers greater than pivot go in another array
     3. recursively call quicksort
     */
-    let left = 0;
-    let right = array.length;
-    let pivot = array[right];
+    // sets the pivot to the right most element in the array
+
+    const pivot = array[array.length - 1];
+    const leftArray = [];
+    const rightArray = [];
+
+    if (array.length === 1) {
+        return array;
+    }
     
     // creates two sub arrays
-    const lessThanArray = array.map(num => num < pivot);
-    const greaterThanArray = array.map(num => num > pivot);
 
-    // recursively calls quicksort on lessThan and greaterThan arrays
-    const lessThanSortedArray = quickSort(lessThanArray);
-    const greaterThanSortedArray = quickSort(greaterThanArray);
+    for (const item of array.slice(0, array.length - 1)) {
+        item < pivot ? leftArray.push(item) : rightArray.push(item);
+    }
 
-    return array = [...lessThanSortedArray, pivot, ...greaterThanSortedArray];
+    // const leftArray = array.map(number => number < pivot);
+    // const rightArray = array.map(number => number > pivot);
 
+    // for (let i = 0; i < array.length - 1; i++) {
+    //     if (array[i] < pivot) {
+    //         leftArray.push(array[i]);
+    //     } else {
+    //         rightArray.push(array[i]);
+    //     }
+    // }
 
-    return array;
+    if (leftArray.length > 0 && rightArray.length > 0) {
+        return [...quickSort(leftArray), pivot, ...quickSort(rightArray)];
+
+    } else if (leftArray.length > 0) {
+        return [...quickSort(leftArray), pivot];
+    } else {
+        return [pivot, ...quickSort(rightArray)];
+    }
+   
 }
+// quickSort(testArray);
 
-quickSort(testArray);
+console.log(quickSort(testArray));
